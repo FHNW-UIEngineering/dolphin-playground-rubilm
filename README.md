@@ -7,6 +7,9 @@ This project provides a template for using [OpenDolphin](http://open-dolphin.org
 - with JavaFX as the client technology
 - with Gradle for build automation.
 
+##Project Description
+load canton data and show them without an edit feature
+
 ##Quick Setup
 
 Prerequisite: Java 8 or above.
