@@ -10,6 +10,10 @@ This project provides a template for using [OpenDolphin](http://open-dolphin.org
 ##Project Description
 load canton data and show them without an edit feature
 
+##Team 
+rubilm and gyssim (github names)
+
+
 ##Quick Setup
 
 Prerequisite: Java 8 or above.
