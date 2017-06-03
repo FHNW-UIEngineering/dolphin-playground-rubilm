@@ -32,7 +32,6 @@ public class ApplicationStateController extends Controller implements BasePmMixi
     @Override
     protected void setDefaultValues() {
         ps.language.setValue(Language.ENGLISH);
-        ps.cleanData.setValue(true);
     }
 
     @Override

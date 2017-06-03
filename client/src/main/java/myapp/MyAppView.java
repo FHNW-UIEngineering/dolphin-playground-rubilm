@@ -5,11 +5,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import myapp.presentationmodel.canton.CantonCommands;
 import org.opendolphin.core.Dolphin;
 import org.opendolphin.core.client.ClientDolphin;
 
 import myapp.presentationmodel.BasePmMixin;
-import myapp.presentationmodel.person.PersonCommands;
 import myapp.util.BasicCommands;
 
 /**
@@ -24,7 +24,7 @@ public class MyAppView extends Application implements BasePmMixin {
         clientDolphin.send(BasicCommands.INITIALIZE_BASE_PMS,
              $ -> buildUI(stage));
         clientDolphin.send(BasicCommands.INITIALIZE_CONTROLLER,
-             $ -> clientDolphin.send(PersonCommands.LOAD_SOME_PERSON));
+             $ -> clientDolphin.send(CantonCommands.LOAD_CANTON));
     }
 
     private void buildUI(Stage stage) {
@@ -33,6 +33,7 @@ public class MyAppView extends Application implements BasePmMixin {
 
         stage.setScene(scene);
         stage.titleProperty().bind(getApplicationState().applicationTitle.labelProperty());
+        stage.setWidth(500);
 
         stage.show();
     }

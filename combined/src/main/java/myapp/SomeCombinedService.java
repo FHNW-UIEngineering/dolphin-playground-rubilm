@@ -5,30 +5,39 @@ import java.util.Random;
 
 import org.opendolphin.core.server.DTO;
 
-import myapp.presentationmodel.person.PersonAtt;
+import myapp.presentationmodel.canton.CantonAtt;
 import myapp.service.SomeService;
 import myapp.util.DTOMixin;
 
 public class SomeCombinedService implements SomeService, DTOMixin {
 
-    String[] names = {"Virgil Grissom", "Edward White", "Roger Chaffee",      // Apollo 1
-                      "Walter Schirra", "Donn Eisele" , "Walter Cunningham",  // Apollo 7
-                      "Frank Borman"  , "James Lovell", "William Anders",     // Apollo 8
-                      "James McDivitt", "David Scott" , "Russel Schweickart", // Apollo 9
-                      "Tom Stafford"  , "John Young"  , "Eugene Cernan"};     // Apollo 10
+    String[] anlagenschluessels = {"E21669010901020020010000000000001"
+            , "E118840197244AAAAA100001997600001"
+            , "E2191501SOXX000000010025807100010"};
+
+    String[] orts = {"Bergtheim"
+            , "Buetthard"
+            , "Gelchsheim"};
+
+    int[] plzs = {97241
+            , 97244
+            , 97255};
 
     @Override
     public DTO loadSomeEntity() {
         long id = createNewId();
 
-        Random r        = new Random();
-        String name     = names[r.nextInt(names.length)];
-        int    age      = r.nextInt(43);
-        boolean isAdult = age >= 18;
-        return new DTO(createSlot(PersonAtt.ID      , id     , id),
-                       createSlot(PersonAtt.NAME    , name   , id),
-                       createSlot(PersonAtt.AGE     , age    , id),
-                       createSlot(PersonAtt.IS_ADULT, isAdult, id));
+        Random random = new Random();
+        int randomIndex = random.nextInt(3);
+
+        String anlagenschluessel = anlagenschluessels[randomIndex];
+        String ort = orts[randomIndex];
+        int plz = plzs[randomIndex];
+
+        return new DTO(createSlot(CantonAtt.ID      , id     , id),
+                createSlot(CantonAtt.ORT    , ort   , id),
+                createSlot(CantonAtt.PLZ     , plz    , id),
+                createSlot(CantonAtt.ANLAGENSCHLUESSEL, anlagenschluessel, id));
     }
 
     @Override

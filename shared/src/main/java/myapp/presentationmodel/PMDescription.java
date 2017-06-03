@@ -1,20 +1,13 @@
 package myapp.presentationmodel;
 
-import myapp.presentationmodel.person.PersonAtt;
+import myapp.presentationmodel.canton.CantonAtt;
 import myapp.presentationmodel.presentationstate.ApplicationStateAtt;
 import myapp.util.AttributeDescription;
 
-/**
- * Specifies/describes all the PresentationModels of this application.
- *
- * Although technically feasible, there shouldn't be any PresentationModel that's not described here.
- *
- * @author Dieter Holz
- */
 public enum PMDescription {
 
     //todo: add all application specific PMDescriptions
-    PERSON("PersonPM", "PERSON", PersonAtt.values()),
+    CANTON("CantonPM", "CANTON", CantonAtt.values()),
 
 
     // ApplicationState is always needed

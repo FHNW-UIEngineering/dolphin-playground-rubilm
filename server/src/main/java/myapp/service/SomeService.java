@@ -13,5 +13,4 @@ public interface SomeService {
     DTO loadSomeEntity();
 
     void save(List<DTO> dtos);
-
 }
