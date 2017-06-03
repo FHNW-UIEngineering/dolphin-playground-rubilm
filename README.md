@@ -8,9 +8,11 @@ This project provides a template for using [OpenDolphin](http://open-dolphin.org
 - with Gradle for build automation.
 
 ##Project Description
+
 load canton data and show them without an edit feature
 
 ##Team 
+
 rubilm and gyssim (github names)
 
 
@@ -28,16 +30,10 @@ It contains the following modules/projects
 
 ##Application introduction
 
-We implement a very simple application that contains only a simple header section and an editor area
-with three labels, two text fields to show the various binding options.
-'Save' will do nothing but printing all modified attributes
-on the server side. 'Reset' is used to reset all modified attributes to their initial value (or the value that has been saved).
-'Next' will load a new 'Person' via a service call. 'German' and 'English' are for multi-language support.
+We implement a very simple application that contains only a simple header section and 
+four text fields to show the some canton details
 
-'Save' and 'Reset' buttons are only enabled if there is really something to save/reset, i.e. at least one attribute value is dirty.
-The dirty state is also visualized via a CSS class (background color changes).
-
-The 'Name' field is marked as mandatory using a green border.
+the applicaion will load canton data and show them without an edit feature
 
 ##Running the samples
 
