@@ -3,7 +3,7 @@ package myapp.presentationmodel;
 import org.opendolphin.core.BasePresentationModel;
 import org.opendolphin.core.Dolphin;
 
-import myapp.presentationmodel.canton.Energy;
+import myapp.presentationmodel.energy.Energy;
 import myapp.presentationmodel.presentationstate.ApplicationState;
 
 public interface BasePmMixin {

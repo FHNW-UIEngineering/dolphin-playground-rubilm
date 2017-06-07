@@ -1,4 +1,4 @@
-package myapp.presentationmodel.canton;
+package myapp.presentationmodel.energy;
 
 import org.opendolphin.core.BasePresentationModel;
 

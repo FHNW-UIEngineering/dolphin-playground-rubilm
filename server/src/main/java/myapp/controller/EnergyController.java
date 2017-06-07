@@ -1,6 +1,6 @@
 package myapp.controller;
 
-import myapp.presentationmodel.canton.EnergyCommands;
+import myapp.presentationmodel.energy.EnergyCommands;
 import org.opendolphin.core.Dolphin;
 import org.opendolphin.core.server.DTO;
 import org.opendolphin.core.server.ServerPresentationModel;
@@ -8,7 +8,7 @@ import org.opendolphin.core.server.comm.ActionRegistry;
 
 import myapp.presentationmodel.BasePmMixin;
 import myapp.presentationmodel.PMDescription;
-import myapp.presentationmodel.canton.Energy;
+import myapp.presentationmodel.energy.Energy;
 import myapp.service.SomeService;
 import myapp.util.Controller;
 

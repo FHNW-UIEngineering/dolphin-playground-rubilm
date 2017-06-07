@@ -9,12 +9,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
-import myapp.presentationmodel.canton.EnergyCommands;
+import myapp.presentationmodel.energy.EnergyCommands;
 import org.opendolphin.core.Dolphin;
 import org.opendolphin.core.client.ClientDolphin;
 
 import myapp.presentationmodel.BasePmMixin;
-import myapp.presentationmodel.canton.Energy;
+import myapp.presentationmodel.energy.Energy;
 import myapp.presentationmodel.presentationstate.ApplicationState;
 import myapp.util.ViewMixin;
 import myapp.util.veneer.AttributeFX;

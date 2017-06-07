@@ -1,6 +1,6 @@
 package myapp.presentationmodel;
 
-import myapp.presentationmodel.canton.EnergyAtt;
+import myapp.presentationmodel.energy.EnergyAtt;
 import myapp.presentationmodel.presentationstate.ApplicationStateAtt;
 import myapp.util.AttributeDescription;
 

@@ -1,4 +1,4 @@
-package myapp.presentationmodel.canton;
+package myapp.presentationmodel.energy;
 
 import myapp.presentationmodel.PMDescription;
 import myapp.util.AttributeDescription;

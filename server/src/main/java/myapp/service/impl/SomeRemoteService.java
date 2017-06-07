@@ -4,7 +4,7 @@ import java.util.Random;
 
 import org.opendolphin.core.server.DTO;
 
-import myapp.presentationmodel.canton.EnergyAtt;
+import myapp.presentationmodel.energy.EnergyAtt;
 import myapp.service.SomeService;
 import myapp.util.DTOMixin;
 
