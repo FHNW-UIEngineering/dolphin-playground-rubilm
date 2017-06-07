@@ -7,7 +7,6 @@ import myapp.presentationmodel.PMDescription;
 import myapp.presentationmodel.BasePmMixin;
 import myapp.presentationmodel.presentationstate.ApplicationState;
 import myapp.util.Controller;
-import myapp.util.Language;
 
 /**
  *
@@ -31,13 +30,12 @@ public class ApplicationStateController extends Controller implements BasePmMixi
 
     @Override
     protected void setDefaultValues() {
-        ps.language.setValue(Language.ENGLISH);
+
     }
 
     @Override
     protected void setupValueChangedListener() {
-        ps.language.valueProperty()
-                   .addListener(($, $$, language) -> translate(ps, language));
+
     }
 
 }

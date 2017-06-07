@@ -47,12 +47,9 @@ class RootPane extends GridPane implements ViewMixin, BasePmMixin {
     private Label     anlageLabel;
     private TextField anlageField;
 
-
     private Button nextButton;
-    private Button germanButton;
-    private Button englishButton;
 
-    private final Canton personProxy;
+    private final Canton cantonProxy;
 
     //always needed
     private final ApplicationState ps;
@@ -60,7 +57,7 @@ class RootPane extends GridPane implements ViewMixin, BasePmMixin {
     RootPane(ClientDolphin clientDolphin) {
         this.clientDolphin = clientDolphin;
         ps = getApplicationState();
-        personProxy = getPersonProxy();
+        cantonProxy = getCantonProxy();
 
         init();
     }
@@ -96,9 +93,7 @@ class RootPane extends GridPane implements ViewMixin, BasePmMixin {
         anlageField = new TextField();
         anlageField.setDisable(true);
 
-        nextButton    = new Button("Next");
-        germanButton  = new Button("German");
-        englishButton = new Button("English");
+        nextButton    = new Button("NEXT");
     }
 
     @Override
@@ -118,19 +113,14 @@ class RootPane extends GridPane implements ViewMixin, BasePmMixin {
         add(plzField, 1, 3, 4, 1);
         add(anlageLabel   , 0, 4);
         add(anlageField, 1, 4, 4, 1);
-        add(new HBox(5, nextButton, germanButton, englishButton), 0, 5, 5, 1);
+        add(new HBox(5, nextButton), 0, 5, 5, 1);
     }
 
     @Override
     public void setupEventHandlers() {
         // all events either send a command (needs to be registered in a controller on the server side)
         // or set a value on an Attribute
-
-        ApplicationState ps = getApplicationState();
         nextButton.setOnAction(   $ -> clientDolphin.send(CantonCommands.LOAD_CANTON));
-
-        germanButton.setOnAction( $ -> ps.language.setValue(Language.GERMAN));
-        englishButton.setOnAction($ -> ps.language.setValue(Language.ENGLISH));
     }
 
     @Override
@@ -140,24 +130,18 @@ class RootPane extends GridPane implements ViewMixin, BasePmMixin {
 
     @Override
     public void setupBindings() {
-        //setupBindings_DolphinBased();
         setupBindings_VeneerBased();
     }
 
-
     private void setupBindings_VeneerBased(){
-        headerLabel.textProperty().bind(personProxy.ort.valueProperty());
+        headerLabel.textProperty().bind(cantonProxy.ort.valueProperty());
 
-        idLabel.textProperty().bind(personProxy.id.labelProperty());
-        idField.textProperty().bind(personProxy.id.valueProperty().asString());
+        idLabel.textProperty().bind(cantonProxy.id.labelProperty());
+        idField.textProperty().bind(cantonProxy.id.valueProperty().asString());
 
-        setupBinding(ortLabel, ortField, personProxy.ort);
-        setupBinding(plzLabel, plzField, personProxy.plz);
-        setupBinding(anlageLabel, anlageField, personProxy.anlagenschluessel);
-
-        germanButton.disableProperty().bind(Bindings.createBooleanBinding(() -> Language.GERMAN.equals(ps.language.getValue()), ps.language.valueProperty()));
-        englishButton.disableProperty().bind(Bindings.createBooleanBinding(() -> Language.ENGLISH.equals(ps.language.getValue()), ps.language.valueProperty()));
-
+        setupBinding(ortLabel, ortField, cantonProxy.ort);
+        setupBinding(plzLabel, plzField, cantonProxy.plz);
+        setupBinding(anlageLabel, anlageField, cantonProxy.anlagenschluessel);
     }
 
     private void setupBinding(Label label, TextField field, AttributeFX attribute) {
@@ -174,14 +158,5 @@ class RootPane extends GridPane implements ViewMixin, BasePmMixin {
         label.textProperty().bind(Bindings.createStringBinding(() -> attribute.getLabel() + (attribute.isMandatory() ? " *" : "  "),
                                                                attribute.labelProperty(),
                                                                attribute.mandatoryProperty()));
-    }
-
-    private void updateStyle(Node node, String style, boolean value){
-        if(value){
-            node.getStyleClass().add(style);
-        }
-        else {
-            node.getStyleClass().remove(style);
-        }
     }
 }

@@ -13,5 +13,4 @@ public class ApplicationState extends PresentationModelVeneer {
     }
 
     public final StringAttributeFX         applicationTitle = new StringAttributeFX(getPresentationModel() , ApplicationStateAtt.APPLICATION_TITLE);
-    public final EnumAttributeFX<Language> language         = new EnumAttributeFX<>(getPresentationModel()   , ApplicationStateAtt.LANGUAGE, Language.class);
 }

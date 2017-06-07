@@ -39,13 +39,4 @@ public class SomeCombinedService implements SomeService, DTOMixin {
                 createSlot(CantonAtt.PLZ     , plz    , id),
                 createSlot(CantonAtt.ANLAGENSCHLUESSEL, anlagenschluessel, id));
     }
-
-    @Override
-    public void save(List<DTO> dtos) {
-        System.out.println(" Data to be saved");
-        dtos.stream()
-            .flatMap(dto -> dto.getSlots().stream())
-            .map(slot -> String.join(", ", slot.getPropertyName(), slot.getValue().toString(), slot.getQualifier()))
-            .forEach(System.out::println);
-    }
 }

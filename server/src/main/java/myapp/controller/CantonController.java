@@ -29,6 +29,15 @@ class CantonController extends Controller implements BasePmMixin {
         registry.register(CantonCommands.LOAD_CANTON, ($, $$) -> loadCanton());
     }
 
+    public ServerPresentationModel loadCanton() {
+        DTO dto = service.loadSomeEntity();
+        ServerPresentationModel pm = createPM(PMDescription.CANTON, dto);
+
+        cantonProxy.getPresentationModel().syncWith(pm);
+
+        return pm;
+    }
+
     @Override
     protected void initializeBasePMs() {
         ServerPresentationModel pm = createProxyPM(PMDescription.CANTON, CANTON_PROXY_PM_ID);
@@ -38,27 +47,10 @@ class CantonController extends Controller implements BasePmMixin {
 
     @Override
     protected void setDefaultValues() {
-        cantonProxy.anlagenschluessel.setMandatory(true);
     }
 
     @Override
     protected void setupValueChangedListener() {
-        getApplicationState().language.valueProperty().addListener((observable, oldValue, newValue) -> translate(cantonProxy, newValue));
-    }
-
-    ServerPresentationModel loadCanton() {
-        DTO dto = service.loadSomeEntity();
-        ServerPresentationModel pm = createPM(PMDescription.CANTON, dto);
-
-        cantonProxy.getPresentationModel().syncWith(pm);
-
-        return pm;
-    }
-
-    void save() {
-        List<DTO> dtos = dirtyDTOs(PMDescription.CANTON);
-        service.save(dtos);
-        rebase(PMDescription.CANTON);
     }
 
     @Override

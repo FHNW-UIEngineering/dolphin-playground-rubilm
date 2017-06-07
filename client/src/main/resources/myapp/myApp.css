@@ -11,7 +11,7 @@
 .heading {
     -fx-font-family: 'Lato Light';
     -fx-font-size: 72;
-    -fx-background-color: linear-gradient(from 50% 0% to 50% 100%, rgb(33, 33, 33) 0%, rgb(66, 66, 66) 100%);
+    -fx-background-color: darkblue;
     -fx-text-fill: white;
     -fx-max-height: 1024;
     -fx-max-width: 1024;
@@ -19,20 +19,6 @@
 
 .text-field.dirty{
     -fx-background-color: papayawhip;
-}
-
-.text-field.dirty.mandatory{
-    -fx-background-color: yellowgreen, papayawhip;
-    -fx-background-insets: 0, 2;
-}
-
-.text-field.invalid {
-    -fx-text-fill: red;
-}
-
-.text-field.mandatory {
-    -fx-background-color: yellowgreen, white;
-    -fx-background-insets: 0, 2;
 }
 
 .check-box.dirty > .box {
