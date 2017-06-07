@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import myapp.presentationmodel.canton.CantonCommands;
+import myapp.presentationmodel.canton.EnergyCommands;
 import org.opendolphin.core.Dolphin;
 import org.opendolphin.core.client.ClientDolphin;
 
@@ -24,7 +24,7 @@ public class MyAppView extends Application implements BasePmMixin {
         clientDolphin.send(BasicCommands.INITIALIZE_BASE_PMS,
              $ -> buildUI(stage));
         clientDolphin.send(BasicCommands.INITIALIZE_CONTROLLER,
-             $ -> clientDolphin.send(CantonCommands.LOAD_CANTON));
+             $ -> clientDolphin.send(EnergyCommands.LOAD_ENERGY));
     }
 
     private void buildUI(Stage stage) {

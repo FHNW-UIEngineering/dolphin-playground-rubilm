@@ -4,7 +4,7 @@ import myapp.presentationmodel.PMDescription;
 import myapp.util.AttributeDescription;
 import myapp.util.ValueType;
 
-public enum CantonAtt implements AttributeDescription {
+public enum EnergyAtt implements AttributeDescription {
     ID(ValueType.ID),
     PLZ(ValueType.INT),
     ORT(ValueType.STRING),
@@ -12,7 +12,7 @@ public enum CantonAtt implements AttributeDescription {
 
     private final ValueType valueType;
 
-    CantonAtt(ValueType type) {
+    EnergyAtt(ValueType type) {
         valueType = type;
     }
 
@@ -23,6 +23,6 @@ public enum CantonAtt implements AttributeDescription {
 
     @Override
     public PMDescription getPMDescription() {
-        return PMDescription.CANTON;
+        return PMDescription.ENERGY;
     }
 }

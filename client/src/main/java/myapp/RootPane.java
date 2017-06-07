@@ -1,42 +1,31 @@
 package myapp;
 
 import javafx.beans.binding.Bindings;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
-import myapp.presentationmodel.canton.CantonCommands;
+import myapp.presentationmodel.canton.EnergyCommands;
 import org.opendolphin.core.Dolphin;
 import org.opendolphin.core.client.ClientDolphin;
 
 import myapp.presentationmodel.BasePmMixin;
-import myapp.presentationmodel.canton.Canton;
+import myapp.presentationmodel.canton.Energy;
 import myapp.presentationmodel.presentationstate.ApplicationState;
-import myapp.util.Language;
 import myapp.util.ViewMixin;
 import myapp.util.veneer.AttributeFX;
 
-/**
- * Implementation of the view details, event handling, and binding.
- *
- * @author Dieter Holz
- *
- * todo : Replace it with your application UI
- */
 class RootPane extends GridPane implements ViewMixin, BasePmMixin {
-    // clientDolphin is the single entry point to the PresentationModel-Layer
     private final ClientDolphin clientDolphin;
 
     private Label headerLabel;
 
     private Label idLabel;
-    private Label idField;
+    private TextField idField;
 
     private Label ortLabel;
     private TextField ortField;
@@ -49,7 +38,7 @@ class RootPane extends GridPane implements ViewMixin, BasePmMixin {
 
     private Button nextButton;
 
-    private final Canton cantonProxy;
+    private final Energy energyProxy;
 
     //always needed
     private final ApplicationState ps;
@@ -57,7 +46,7 @@ class RootPane extends GridPane implements ViewMixin, BasePmMixin {
     RootPane(ClientDolphin clientDolphin) {
         this.clientDolphin = clientDolphin;
         ps = getApplicationState();
-        cantonProxy = getCantonProxy();
+        energyProxy = getEnergyProxy();
 
         init();
     }
@@ -79,7 +68,8 @@ class RootPane extends GridPane implements ViewMixin, BasePmMixin {
         headerLabel.getStyleClass().add("heading");
 
         idLabel = new Label();
-        idField = new Label();
+        idField = new TextField();
+        idField.setDisable(true);
 
         ortLabel = new Label();
         ortField = new TextField();
@@ -118,9 +108,7 @@ class RootPane extends GridPane implements ViewMixin, BasePmMixin {
 
     @Override
     public void setupEventHandlers() {
-        // all events either send a command (needs to be registered in a controller on the server side)
-        // or set a value on an Attribute
-        nextButton.setOnAction(   $ -> clientDolphin.send(CantonCommands.LOAD_CANTON));
+        nextButton.setOnAction(   $ -> clientDolphin.send(EnergyCommands.LOAD_ENERGY));
     }
 
     @Override
@@ -134,23 +122,20 @@ class RootPane extends GridPane implements ViewMixin, BasePmMixin {
     }
 
     private void setupBindings_VeneerBased(){
-        headerLabel.textProperty().bind(cantonProxy.ort.valueProperty());
+        headerLabel.textProperty().bind(energyProxy.ort.valueProperty());
 
-        idLabel.textProperty().bind(cantonProxy.id.labelProperty());
-        idField.textProperty().bind(cantonProxy.id.valueProperty().asString());
+        idLabel.textProperty().bind(energyProxy.id.labelProperty());
+        idField.textProperty().bind(energyProxy.id.valueProperty().asString());
 
-        setupBinding(ortLabel, ortField, cantonProxy.ort);
-        setupBinding(plzLabel, plzField, cantonProxy.plz);
-        setupBinding(anlageLabel, anlageField, cantonProxy.anlagenschluessel);
+        setupBinding(ortLabel, ortField, energyProxy.ort);
+        setupBinding(plzLabel, plzField, energyProxy.plz);
+        setupBinding(anlageLabel, anlageField, energyProxy.anlagenschluessel);
     }
 
     private void setupBinding(Label label, TextField field, AttributeFX attribute) {
         setupBinding(label, attribute);
 
         field.textProperty().bindBidirectional(attribute.userFacingStringProperty());
-        field.tooltipProperty().bind(Bindings.createObjectBinding(() -> new Tooltip(attribute.getValidationMessage()),
-                                                                  attribute.validationMessageProperty()
-                                                                 ));
     }
 
 

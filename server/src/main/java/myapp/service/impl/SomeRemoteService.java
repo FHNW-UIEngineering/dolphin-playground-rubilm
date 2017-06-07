@@ -1,11 +1,10 @@
 package myapp.service.impl;
 
-import java.util.List;
 import java.util.Random;
 
 import org.opendolphin.core.server.DTO;
 
-import myapp.presentationmodel.canton.CantonAtt;
+import myapp.presentationmodel.canton.EnergyAtt;
 import myapp.service.SomeService;
 import myapp.util.DTOMixin;
 
@@ -33,9 +32,9 @@ public class SomeRemoteService implements SomeService, DTOMixin {
         String ort = orts[randomIndex];
         int plz = plzs[randomIndex];
 
-        return new DTO(createSlot(CantonAtt.ID      , id     , id),
-                       createSlot(CantonAtt.ORT    , ort   , id),
-                       createSlot(CantonAtt.PLZ     , plz    , id),
-                       createSlot(CantonAtt.ANLAGENSCHLUESSEL, anlagenschluessel, id));
+        return new DTO(createSlot(EnergyAtt.ID      , id     , id),
+                       createSlot(EnergyAtt.ORT    , ort   , id),
+                       createSlot(EnergyAtt.PLZ     , plz    , id),
+                       createSlot(EnergyAtt.ANLAGENSCHLUESSEL, anlagenschluessel, id));
     }
 }

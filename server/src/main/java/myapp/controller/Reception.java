@@ -19,7 +19,7 @@ public class Reception extends DolphinServerAction {
 
     public void registerIn(ActionRegistry registry) {
         // todo register all your controllers here.
-        getServerDolphin().register(new CantonController(myService));
+        getServerDolphin().register(new EnergyController(myService));
 
         //always needed
         getServerDolphin().register(new ApplicationStateController());

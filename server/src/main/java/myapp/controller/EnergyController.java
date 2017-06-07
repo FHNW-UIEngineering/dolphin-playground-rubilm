@@ -1,8 +1,6 @@
 package myapp.controller;
 
-import java.util.List;
-
-import myapp.presentationmodel.canton.CantonCommands;
+import myapp.presentationmodel.canton.EnergyCommands;
 import org.opendolphin.core.Dolphin;
 import org.opendolphin.core.server.DTO;
 import org.opendolphin.core.server.ServerPresentationModel;
@@ -10,39 +8,39 @@ import org.opendolphin.core.server.comm.ActionRegistry;
 
 import myapp.presentationmodel.BasePmMixin;
 import myapp.presentationmodel.PMDescription;
-import myapp.presentationmodel.canton.Canton;
+import myapp.presentationmodel.canton.Energy;
 import myapp.service.SomeService;
 import myapp.util.Controller;
 
-class CantonController extends Controller implements BasePmMixin {
+class EnergyController extends Controller implements BasePmMixin {
 
     private final SomeService service;
 
-    private Canton cantonProxy;
+    private Energy energyProxy;
 
-    CantonController(SomeService service) {
+    EnergyController(SomeService service) {
         this.service = service;
     }
 
     @Override
     public void registerCommands(ActionRegistry registry) {
-        registry.register(CantonCommands.LOAD_CANTON, ($, $$) -> loadCanton());
+        registry.register(EnergyCommands.LOAD_ENERGY, ($, $$) -> loadEnergy());
     }
 
-    public ServerPresentationModel loadCanton() {
+    public ServerPresentationModel loadEnergy() {
         DTO dto = service.loadSomeEntity();
-        ServerPresentationModel pm = createPM(PMDescription.CANTON, dto);
+        ServerPresentationModel pm = createPM(PMDescription.ENERGY, dto);
 
-        cantonProxy.getPresentationModel().syncWith(pm);
+        energyProxy.getPresentationModel().syncWith(pm);
 
         return pm;
     }
 
     @Override
     protected void initializeBasePMs() {
-        ServerPresentationModel pm = createProxyPM(PMDescription.CANTON, CANTON_PROXY_PM_ID);
+        ServerPresentationModel pm = createProxyPM(PMDescription.ENERGY, ENERGY_PROXY_PM_ID);
 
-        cantonProxy = new Canton(pm);
+        energyProxy = new Energy(pm);
     }
 
     @Override

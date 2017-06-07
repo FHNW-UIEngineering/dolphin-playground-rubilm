@@ -1,13 +1,13 @@
 package myapp.presentationmodel;
 
-import myapp.presentationmodel.canton.CantonAtt;
+import myapp.presentationmodel.canton.EnergyAtt;
 import myapp.presentationmodel.presentationstate.ApplicationStateAtt;
 import myapp.util.AttributeDescription;
 
 public enum PMDescription {
 
     //todo: add all application specific PMDescriptions
-    CANTON("CantonPM", "CANTON", CantonAtt.values()),
+    ENERGY("EnergyPM", "ENERGY", EnergyAtt.values()),
 
 
     // ApplicationState is always needed
