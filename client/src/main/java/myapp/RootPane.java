@@ -112,11 +112,6 @@ class RootPane extends GridPane implements ViewMixin, BasePmMixin {
     }
 
     @Override
-    public void setupValueChangedListeners() {
-
-    }
-
-    @Override
     public void setupBindings() {
         setupBindings_VeneerBased();
     }

@@ -44,14 +44,6 @@ class EnergyController extends Controller implements BasePmMixin {
     }
 
     @Override
-    protected void setDefaultValues() {
-    }
-
-    @Override
-    protected void setupValueChangedListener() {
-    }
-
-    @Override
     public Dolphin getDolphin() {
         return getServerDolphin();
     }

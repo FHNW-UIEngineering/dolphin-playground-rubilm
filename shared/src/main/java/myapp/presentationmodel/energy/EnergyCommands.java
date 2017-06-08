@@ -6,5 +6,4 @@ public interface EnergyCommands {
 	static String unique(String key) {
 		return EnergyCommands.class.getName() + "." + key;
 	}
-
 }
